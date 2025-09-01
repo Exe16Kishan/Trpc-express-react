@@ -2,13 +2,14 @@ import express from 'express';
 import * as trpcExpress from '@trpc/server/adapters/express';
 import { appRouter } from './router';
 import { createContext } from './trpc';
+import cors from 'cors';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-
+app.use(cors());
 app.use(
   '/trpc',
   trpcExpress.createExpressMiddleware({
